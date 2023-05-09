@@ -1,0 +1,113 @@
+// @use & @forward methods start here
+// just import components we have created to use in this project
+// usage ===
+// @use "./components/SchedualCards/schedualCards";
+
+@import "./styles/index";
+@import "./components/SchedualCards/schedualCards";
+@import "./components/Header/header";
+
+ 
+ /* toggletheme */
+ :root .Project__UI {
+  @include spread-map($theme-map-light);
+}
+:root .Project__UI {
+  @include spread-map($theme-map-dark);
+}
+
+// ===========================
+// main project grid layout
+// ==========================
+.Project__UI {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  //   border: 5px dashed fuchsia;
+  margin: 0 auto;
+  transition: color ease-in-out 0.6s;
+
+  &__toggle-theme__dark,
+  &__toggle-theme__light {
+    /* Core Theme  colors @  https://www.colourlovers.com/palettes/search?query=neon */
+    background: theme-var($--Theme-Color-Background);
+    color: theme-var($--Theme-Color-Copy-Body);
+    transition: color ease-in-out 0.6s;
+  }
+
+  &__grid {
+    display: grid;
+    padding: 0 1rem;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "headerArea   headerArea  headerArea"
+      "schedualZone schedualLogsZone  schedualLogsZone"
+      "footerArea footerArea   footerArea";
+
+    justify-content: space-between;
+    grid-template-rows: 1fr min-content;
+    gap: 1rem;
+    row-gap: 0;
+    // max-height: 100vh;
+    transition: width ease-in-out 1s;
+    @include breakpoint-max($view-medium) {
+      // will be applied to elements below $view-medium (860px)
+      grid-template-columns: 1fr 1fr;
+      transition: width ease-in-out 1s;
+      width: 100%;
+      max-width: 100%;
+      align-items: flex-end;
+      gap: 0;
+      justify-content: space-between;
+    }
+    @include breakpoint-max($view-mobile) {
+      transition: width ease-in-out 1s;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "headerArea   headerArea  "
+        "schedualZone schedualLogsZone "
+        "footerArea footerArea   ";
+    }
+
+    &__header {
+      display: flex;
+      grid-area: headerArea;
+      //   border: 1px solid red;
+      border-bottom: 2px dashed theme-var($--Theme-Color-Border);
+    }
+
+    &__footer {
+      display: flex;
+
+      grid-area: footerArea;
+      //   border: 1px solid green;
+    }
+
+    &__schedualCards {
+      grid-row-start: schedualZone;
+      display: flex;
+      border-right: 2px dashed theme-var($--Theme-Color-Border);
+      max-height: 100vh;
+      overflow-y: scroll;
+      grid-area: schedualZone;
+      //   border: 1px solid black;
+      gap: 1rem;
+    }
+
+    &__schedualCardLogs {
+      grid-row-start: schedualZone;
+      flex-flow: column;
+
+      max-height: 100vh;
+      overflow-y: scroll;
+      display: flex;
+      grid-area: schedualLogsZone;
+      //   border: 1px solid gold;
+    }
+  }
+}

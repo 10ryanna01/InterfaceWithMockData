@@ -1,0 +1,11 @@
+@import "../../styles/index";
+
+.Project__UI {
+
+&__header {
+    &__title {
+      @extend .Project__UI__utility__copy__h1;
+    }
+  }
+
+}

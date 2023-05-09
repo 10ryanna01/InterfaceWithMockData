@@ -1,0 +1,36 @@
+// ==================================================================
+// index of global classes for our components to use if / when needed
+// ==================================================================
+
+// @forward "./mixin"; 
+// @use"./mixin" as *;
+
+// @forward "./typography";
+// @use "./typography" as *;
+
+// @forward "./utilities";
+// @use "./utilities" as *;
+
+// @forward "./theme";
+// @use"./theme" as *;
+ 
+ 
+@import "./reset";
+@import "./mixin";
+@import "./theme";
+@import "./typography";
+@import "./utilities";
+ 
+
+
+
+// ==================================================================
+// vendor @ --- Animate.css
+// documentation @ https://animate.style/
+// example usage in useState or in scss:  
+// setState( "animate__animated animate__bounce")
+// @extend .animate__animated; 
+// @extend .animate__bounce; 
+// ==================================================================
+
+@import "animate.css";

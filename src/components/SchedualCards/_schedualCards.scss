@@ -1,0 +1,97 @@
+// @use & @forward are  still buggy in Vite
+//  @use "../../styles/index" as *; 
+
+@import "../../styles/index";
+
+.Project__UI {
+
+  
+  &__schedual-card {
+    gap: 1rem;
+    display: flex;
+    flex-flow: column;
+
+    &__content:nth-child(even) {
+      border-top: 3px solid theme-var($--Theme-Color-Copy-Feature-Link);
+    }
+
+    &__content:nth-child(3n + 4) {
+      border-top: 3px solid theme-var($--Theme-Color-Background);
+    }
+    &__content {
+      border-top: 3px solid theme-var($--Theme-Color-Border);
+
+      position: relative;
+      width: 300px;
+      justify-content: center;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 5px  rgba(0, 0, 0, 0.1);
+      transition: width ease-in-out ;
+      @include breakpoint-max($view-medium) {
+        transition: width ease-in-out;
+        width: 200px;
+        flex-wrap: wrap;
+        flex-grow: 1;
+      }
+
+      &__body {
+      }
+      &__footer {
+      }
+    }
+  }
+
+  &__schedual-card--small {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: width ease-in-out 1s;
+    @include breakpoint-max($view-medium) {
+    justify-content: center;
+    }
+    &__content {
+      display: flex;
+      width: 185px;
+      height: 235px;
+      flex-flow: column;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      transition: width ease-in-out 1s;
+      @include breakpoint-max($view-medium) {
+        
+        transition: width ease-in-out 1s;
+        min-height: 240px;
+      }
+    }
+
+    &__content__header {
+    }
+    &__content__footer {
+    }
+  }
+
+}
+
+.Project__UI__schedual-card__toast {
+  width: 300px;
+  height: 100px;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: theme-var($--Theme-Color-Background);
+  border-radius: 1rem;
+  padding: 1rem;
+
+  border-left: 2px solid theme-var($--Theme-Color-Copy-Link);
+}

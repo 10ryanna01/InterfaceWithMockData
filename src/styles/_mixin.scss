@@ -1,0 +1,53 @@
+
+
+//////////////////////////////
+// start mixins.scss
+//////////////////////////////
+
+$view-mobile: 420px; 
+$view-medium: 860px;
+$view-large: 861px;
+
+@mixin breakpoint-max($view-mobile) {
+    @media (max-width: $view-mobile) {
+        @content;
+    }
+}
+ 
+@mixin screen-reader-only {
+    @content;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+  }
+  @mixin show-on-medium {
+    @media (max-width: $view-medium) {
+      @content;
+      display: flex;
+      flex-flow: row;
+      gap: 1rem;
+    }
+  }
+  @mixin hide-on-medium {
+    @media (max-width: $view-medium) {
+      @content;
+      display: none;
+    }
+  }
+  
+  @mixin hide-on-large {
+    @media (min-width: $view-large) {
+      @content;
+      display: none;
+    }
+  }
+  
+
+ 

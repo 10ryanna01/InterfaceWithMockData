@@ -1,0 +1,105 @@
+ 
+
+$--Theme-Color-Background: --Theme-Color-Background;
+$--Theme-Color-Copy-Body: --Theme-Color-Copy-Body;
+$--Theme-Color-Copy-Title: --Theme-Color-Copy-Title;
+$--Theme-Color-Copy-Link: --Theme-Color-Copy-Link;
+$--Theme-Color-Copy-Feature-Link: --Theme-Color-Copy-Feature-Link;
+$--Theme-Color-Border: --Theme-Color-Border;
+$--Theme-Color-Icon: --Theme-Color-Icon;
+$--Theme-Color-Error: --Theme-Color-Error;
+$--Theme-Color-TransparentBackground: --Theme-Color-TransparentBackground;
+$--Theme-Color-Overlay: --Theme-Color-Overlay;
+$--Theme-Color-Icon-Opacity: --Theme-Color-Icon-Opacity;
+
+ 
+// ============================
+//  Base theme  / Default theme 
+//  ===========================
+$theme-map-light: (
+  $--Theme-Color-Background: #EAEAEA,
+  $--Theme-Color-Copy-Body: #252A34,
+  $--Theme-Color-Copy-Title: #252A34,
+  $--Theme-Color-Copy-Link: #FF2E63,
+  $--Theme-Color-Copy-Feature-Link: #FF2E63,
+  
+//   utility theme colors
+  $--Theme-Color-Border: #252A34,
+  $--Theme-Color-Icon: #08D9D6,
+  $--Theme-Color-Error: #FF2E63,
+  $--Theme-Color-TransparentBackground: transparent,
+  $--Theme-Color-Overlay: rgba(234, 234, 234, 0.7),
+  $--Theme-Color-Icon-Opacity:   rgba(0, 0, 0, 0.2),
+
+);
+/* Core Theme  options https://www.colourlovers.com/palettes/search?query=neon */
+$theme-map-dark: (
+  $--Theme-Color-Background: #03001c,
+  $--Theme-Color-Copy-Body: #eafff7,
+  $--Theme-Color-Copy-Title: #eafff7,
+  $--Theme-Color-Copy-Link: #fb2576,
+  $--Theme-Color-Copy-Feature-Link: #C8FF00,
+//   utility theme colors
+  $--Theme-Color-Border: #fb2576,
+  $--Theme-Color-Icon: #b6eada,
+  $--Theme-Color-Error: #faa307,
+  $--Theme-Color-TransparentBackground: transparent,
+  $--Theme-Color-Overlay: rgba(3, 0, 28, 0.7),
+  $--Theme-Color-Icon-Opacity:   rgba(0, 0, 0, 0.2),
+);
+
+
+/* mixins to apply theme */
+
+@mixin spread-map($map: ()) {
+  @each $key, $value in $map {
+    #{$key}: $value;
+  }
+}
+
+@function theme-var($key, $fallback: null, $map: $theme-map-light) {
+  @if not map-has-key($map, $key) {
+    @error "key: '#{$key}', is not a key in map: #{$map}";
+  }
+  @if ($fallback) {
+    @return var($key, $fallback);
+  } @else {
+    @return var($key);
+  }
+}
+// ===================
+// themed selection
+// ===================
+::selection {
+  color: theme-var($--Theme-Color-Background);
+  background: theme-var($--Theme-Color-Copy-Feature-Link);
+}
+// ==================================
+//  themed scroll bars
+// ==================================
+/* Works on Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(70, 70, 70) auto;
+}
+
+/* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+	width: 7px;
+}
+
+  *::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+  *::-webkit-scrollbar-thumb {
+	background-color:rgb(70, 70, 70);
+}
+
+/* End scrollbar styling*/
+ 
+
+::-webkit-scrollbar {
+  background: transparent; /* Chrome/Safari/Webkit */
+  width: 0px;
+}
